@@ -17,9 +17,12 @@ class GameTime {
     }
     return GameTime._instance
   }
-
-  static get time() {
-    return GameTime.instance._time - Date.now()
+  
+  /**
+   * return elapsed time in seconds
+   */
+  static get elapsedTime() {
+    return  (Date.now() - GameTime.instance._time ) /1000
   }
 
   // static get deltaTime() {

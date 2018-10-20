@@ -1,18 +1,15 @@
-import h from './h'
-import GameObject from './GameObject'
+import Sprite from './pure/Sprite'
 
-class Bird extends GameObject {
-  constructor() {
-    super()
+class Bird extends Sprite {
+  constructor(speed: number = 0.5) {
+  const sheets = ['./img/bird0.png', './img/bird1.png']
+    super(sheets, speed)
     
-    const bird = h('img', {src: './img/bird0.png'}, []) as HTMLImageElement
-
-    this.object = bird
 
   }
 
   update(dt) {
-
+    super.update(dt)
   }
 
 }

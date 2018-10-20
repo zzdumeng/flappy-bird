@@ -1,22 +1,33 @@
-class GameObject {
-  private _t: number
+import TimeTarget from './TimeTarget'
+
+class GameObject extends TimeTarget{
   object: HTMLElement
   constructor() {
-   
-    this._t = Date.now()
-    this._update = this._update.bind(this)
-    window.requestAnimationFrame(this._update)
+    super()
   }
-
-  _update() {
-    let dt = Date.now() -  this._t
-    this.update(dt)
-    window.requestAnimationFrame(this._update)
+  init() {
+    this.object.classList.add('pure-game-object')
   }
-
   update(dt) {
 
   }
+
+  on(e: string, cb ) {
+    // this.object.addEventListener(e, cb)
+    this.object.addEventListener(e, function() {
+      console.log('[game object] clicked')
+      cb()
+    })
+  }
+
+  off(e:string, cb) {
+    this.object.removeEventListener(e, cb)
+  }
+
+  set zIndex(ni) {
+    this.object.style.zIndex = ni
+  }
+
   set x(nv) {
     this.object.style.left = nv + 'px' 
   }
@@ -26,11 +37,17 @@ class GameObject {
   }
 
   get width():number {
-    return this.object.clientWidth
+    return this.object.offsetWidth
+  }
+  set width(nw) {
+    this.object.style.width = nw + 'px'
   }
   get height(): number {
 
-    return this.object.clientHeight
+    return this.object.offsetHeight
+  }
+  set height(nh) {
+    this.object.style.height = nh + 'px'
   }
 }
 
