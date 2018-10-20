@@ -16,8 +16,10 @@ class TimeTarget {
   }
 
   private _update() {
-    let dt = GameTime.elapsedTime -  this._t
+    const et = GameTime.elapsedTime  
+    let dt = et -  this._t
     this.update(dt)
+    this._t = et
     window.requestAnimationFrame(this._update)
   }
 

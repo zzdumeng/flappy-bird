@@ -6,12 +6,13 @@ enum ShapeType {
   Rectangle,
 }
 class Shape extends GameObject{
+  shape: HTMLElement
   constructor() {
     super()
     const shape = <HTMLElement> h('div', {className: 'pure-shape'}, [])
-    this.object = shape
-
-    super.init()
+    this.shape = shape
+    this.addChild(shape)
+    // super.init()
   }
 
   draw() {
@@ -19,11 +20,11 @@ class Shape extends GameObject{
   }
 
   fill(c: string) {
-    this.object.style.backgroundColor = c
+    this.shape.style.backgroundColor = c
   } 
 
   opacity(o: number) {
-    this.object.style.opacity = String(o)
+    this.shape.style.opacity = String(o)
   }
 }
 
